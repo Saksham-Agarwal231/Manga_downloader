@@ -21,8 +21,7 @@ pageDownl = page_download(manga_chapter, startNumber, endNumber)
 pageDownl.chapter_select()
 mangaDATA = pageDownl.MangaData
 mangaPagesList = pageDownl.Pages
-import base64
-help = open("sdvfg.pdf", "wb")
+
 
 #the file conversion part
 def choiced():
