@@ -16,8 +16,8 @@ class page_download:
     
     def chapter_select(self):
         chapFirst = self.manga_chapter[self.startNumber - 1]
-        chapLast = self.manga_chapter[self.endNumber]
-        while chapFirst != chapLast:
+        chapLast = self.manga_chapter[self.endNumber - 1]
+        while self.startNumber - 1 != self.endNumber:
             if chapFirst == 'flip':
                 print("There is no data for this chapter on the site, i beg for forgiveness!!!")
                 self.startNumber += 1
@@ -52,6 +52,10 @@ class page_download:
                 self.Pages.append(chapNumber)
 
             self.startNumber += 1
-            chapFirst = self.manga_chapter[self.startNumber - 1]
+            try:
+               chapFirst = self.manga_chapter[self.startNumber - 1]
+
+            except IndexError:
+                break
 
 

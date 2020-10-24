@@ -5,7 +5,7 @@ import urllib.request, urllib.parse, urllib.error
 import webbrowser
 from bs4 import BeautifulSoup
 from page_download import page_download
-from image_comverter import ImgConvert, pdf_conveter
+from image_comverter import ImgConvert
 
 #all the scraping part code
 scrapeData = scrapy()
@@ -25,10 +25,25 @@ import base64
 help = open("sdvfg.pdf", "wb")
 
 #the file conversion part
-ImgConv = ImgConvert(mangaPagesList, manga_chapter,startNumber,endNumber,mangaDATA)
-pdfConv = pdf_conveter(mangaPagesList, manga_chapter,startNumber,endNumber,mangaDATA)
-#ImgConv.convert_func()
-pdfConv.pdf_conv()
+def choiced():
+    ImgConv = ImgConvert(mangaPagesList, manga_chapter,startNumber,endNumber,mangaDATA)
+
+    choice = int(input("\n\nDo you want to save in image format or pdf format\n1)Img format\n2)pdf format\n\nEnter your choice here: "))
+    if choice == 1:
+        print("\n\nRoger that senpai ヾ(≧▽≦*)o")
+        ImgConv.convert_func()
+    elif choice == 2:
+        print("\n\nOK SENSEI!!!!! ψ(｀∇´)ψ")
+        ImgConv.pdf_conv()
+    else:
+        choiced()
+
+choiced()
+
+inp = input("Now, all your downloads are done!!!!!!!!! enjoy :)\nPress enter to leave: ")
+
+
+
 
 
 

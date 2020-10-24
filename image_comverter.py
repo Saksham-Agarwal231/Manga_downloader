@@ -10,7 +10,7 @@ class ImgConvert:
 
     def convert_func(self):
         chapFirst = self.manga_chapter[self.startNumber - 1]
-        chapLast = self.manga_chapter[self.endNumber]
+        chapLast = self.manga_chapter[self.endNumber - 1]
         MangaDataTry = self.MangaData
         anotherVariable = 0
         add = 0
@@ -18,7 +18,7 @@ class ImgConvert:
         for n in self.Pages:
             add = add + n
         
-        while chapFirst != chapLast:
+        while self.startNumber - 1 != self.endNumber:
 
             if chapFirst == 'flip':
                 self.startNumber += 1
@@ -37,35 +37,27 @@ class ImgConvert:
                         files.write(MangaDataTry[0])
                         MangaDataTry.pop(0)
                         files.close()
-
-                chapFirst = self.manga_chapter[self.startNumber]
+                try:
+                    chapFirst = self.manga_chapter[self.startNumber]
+                except IndexError:
+                    break
                 self.startNumber += 1
                 anotherVariable += 1
 
 
-class pdf_conveter:
-
-    def __init__(self,Pages, manga_chapter, startNumber, endNumber, MangaData):
-        self.startNumber = startNumber
-        self.endNumber = endNumber
-        self.MangaData = MangaData
-        self.manga_chapter = manga_chapter
-        self.Pages = Pages
-
     def pdf_conv(self):
         chapFirst = self.manga_chapter[self.startNumber - 1]
-        chapLast = self.manga_chapter[self.endNumber]
+        chapLast = self.manga_chapter[self.endNumber - 1]
         MangaDataTry = self.MangaData
         anotherVariable = 0
         add = 0
         PagesNo = self.Pages[anotherVariable]
         lastVariable = []
-        secondLastVariable = []
 
         for n in self.Pages:
             add = add + n
         
-        while chapFirst != chapLast:
+        while self.startNumber - 1 != self.endNumber:
 
             if chapFirst == 'flip':
                 self.startNumber += 1
@@ -82,16 +74,20 @@ class pdf_conveter:
                         add = add - PagesNo
                         break
                     else:
-                        lastVariable.append(MangaDataTry[0])
-                        MangaDataTry.pop(0)    
-                    f = open("Manga_downloads/{}/{}.pdf".format(spilleted[1], spilleted[2]),"ab")
-
-                for nn in lastVariable:
-                    f.write(img2pdf.convert(bytes(nn)))
-                    
+                        lastVariable.append(bytes(MangaDataTry[0]))
+                        MangaDataTry.pop(0)   
+                
+                f = open("Manga_downloads/{}/{}.pdf".format(spilleted[1], spilleted[2]),"wb")
+             
+                f.write(img2pdf.convert(lastVariable))
                 lastVariable.clear()
                 f.close()
                 
-                chapFirst = self.manga_chapter[self.startNumber]
+                try:
+                    chapFirst = self.manga_chapter[self.startNumber]
+                except IndexError:
+                    break
                 self.startNumber += 1
                 anotherVariable += 1
+
+
