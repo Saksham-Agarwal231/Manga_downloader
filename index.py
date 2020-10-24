@@ -1,9 +1,4 @@
-import ssl
 from scrape import scrapy
-import requests
-import urllib.request, urllib.parse, urllib.error
-import webbrowser
-from bs4 import BeautifulSoup
 from page_download import page_download
 from image_comverter import ImgConvert
 
