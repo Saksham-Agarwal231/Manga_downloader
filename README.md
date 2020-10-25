@@ -7,7 +7,7 @@ All the modules you need to download via pip to use are:
 
 1)requests = pip install requests
 
-2)beautiful soup = pip install bs4
+2)beautiful soup = pip install beautifulsoup4
 
 3)img2pdf = pip install img2pdf
 
