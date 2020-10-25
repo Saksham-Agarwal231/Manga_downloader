@@ -5,13 +5,13 @@ from image_comverter import ImgConvert
 #all the scraping part code
 scrapeData = scrapy()
 alt =scrapeData.search_list()
-takein = int(input('Whats ya no: '))
+takein = int(input('Whats the number of the manga you wanna download: '))
 manga_chapter =scrapeData.manga_open(takein)
 
 
 #all the page downloading part code
-startNumber = int(input("Enter the starting number: "))
-endNumber = int(input("Enter the ending number: "))
+startNumber = int(input("Enter the starting manga chapter number: "))
+endNumber = int(input("Enter the ending manga chapter number: "))
 pageDownl = page_download(manga_chapter, startNumber, endNumber)
 pageDownl.chapter_select()
 mangaDATA = pageDownl.MangaData
@@ -30,6 +30,7 @@ def choiced():
         print("\n\nOK SENSEI!!!!! ψ(｀∇´)ψ")
         ImgConv.pdf_conv()
     else:
+        print("\nWrite the choice in 1 or 2 only!!!!!!!\n")
         choiced()
 
 choiced()
